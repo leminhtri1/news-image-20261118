@@ -6,155 +6,101 @@
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { width: 1024px; height: 1024px; overflow: hidden; }
-  body { background: #f6f1e7; color: #1b1b1b; font-family: "Segoe UI", Arial, sans-serif; padding: 12px 16px 0; }
+  body { background: #f6f1e7; color: #1b1b1b; font-family: "Segoe UI", Arial, sans-serif; padding: 10px 16px 0; }
   .cond { font-family: Bahnschrift, "Arial Narrow", Arial, sans-serif; }
-  .top { display: flex; justify-content: space-between; font-size: 11.5px; letter-spacing: 1.6px; font-weight: 700; }
-  .top .l { color: #b3261e; }
-  .top .r { color: #444; }
-  h1.mast { font-family: Georgia, "Times New Roman", serif; font-weight: 700; font-size: 62px; line-height: 66px; white-space: nowrap;
-            text-align: center; letter-spacing: -1px; margin-top: 2px; }
-  .rule { border-top: 3px solid #1b1b1b; border-bottom: 1px solid #1b1b1b; height: 6px; margin: 4px 0 6px; }
-  .band { display: flex; height: 21px; font-size: 12.5px; font-weight: 700; color: #fff; letter-spacing: 1px; }
-  .band div { display: flex; align-items: center; justify-content: center; }
+  .serif { font-family: Georgia, "Times New Roman", serif; }
 
-  .leads { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 9px; }
-  .lead .art { height: 104px; border-radius: 4px; overflow: hidden; }
-  .lead .art svg { display: block; }
-  .kick { font-size: 11px; font-weight: 700; letter-spacing: 1px; margin-top: 6px; display: flex; align-items: center; gap: 5px; }
-  .num { display: inline-flex; width: 16px; height: 16px; border-radius: 50%; color: #fff; font-size: 10.5px;
+  .head { display: flex; align-items: center; gap: 14px; }
+  .badge { width: 66px; flex: none; border: 2px solid #1b1b1b; border-radius: 6px; overflow: hidden; text-align: center; background: #fff; }
+  .badge .m { background: #b3261e; color: #fff; font-size: 12px; font-weight: 700; letter-spacing: 2px; padding: 1px 0; }
+  .badge .d { font-size: 34px; line-height: 36px; font-weight: 700; }
+  .badge .w { font-size: 9.5px; font-weight: 700; letter-spacing: 1px; color: #555; padding-bottom: 2px; }
+  .titles { flex: 1; }
+  .kicker { display: flex; justify-content: space-between; font-size: 11px; letter-spacing: 1.5px; font-weight: 700; }
+  .kicker .l { color: #b3261e; } .kicker .r { color: #444; }
+  h1.mast { font-weight: 700; font-size: 55px; line-height: 58px; letter-spacing: -0.8px; white-space: nowrap; }
+  .sub { font-size: 12px; font-style: italic; color: #444; margin-top: -2px; }
+  .rule { border-top: 3px solid #1b1b1b; border-bottom: 1px solid #1b1b1b; height: 6px; margin: 5px 0 5px; }
+
+  .band { display: flex; height: 19px; font-size: 11.5px; font-weight: 700; color: #fff; letter-spacing: 1px; }
+  .band div { display: flex; align-items: center; justify-content: center; white-space: nowrap; }
+  .clock { display: grid; grid-template-columns: 74px repeat(7, 1fr); margin-top: 5px; border: 1px solid #c9bfae; background: #fffaf0; }
+  .clock .h { background: #1b1b1b; color: #fff; font-size: 10px; font-weight: 700; letter-spacing: 1px; display: flex; align-items: center; justify-content: center; text-align: center; line-height: 12px; }
+  .clock .c { padding: 2px 6px; border-left: 1px solid #ddd2bf; }
+  .clock .t { font-size: 12.5px; font-weight: 700; color: #b3261e; }
+  .clock .e { font-size: 10px; line-height: 12px; color: #333; }
+
+  .leads { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 7px; }
+  .art { border-radius: 4px; overflow: hidden; }
+  .art svg { display: block; }
+  .kick { font-size: 10px; font-weight: 700; letter-spacing: 0.8px; margin-top: 4px; display: flex; align-items: center; gap: 4px; }
+  .kick .src { margin-left: auto; color: #777; font-weight: 400; letter-spacing: 0.4px; font-size: 9px; }
+  .num { display: inline-flex; width: 15px; height: 15px; border-radius: 50%; color: #fff; font-size: 10px;
          align-items: center; justify-content: center; letter-spacing: 0; flex: none; }
-  .lead h2 { font-size: 23px; line-height: 24px; font-weight: 700; margin-top: 2px; letter-spacing: -0.2px; }
-  .lead p { font-size: 12.4px; line-height: 15.5px; color: #333; margin-top: 4px; }
+  .lead h2 { font-size: 20.5px; line-height: 21.5px; font-weight: 700; margin-top: 1px; }
+  .lead p { font-size: 11.4px; line-height: 13.8px; color: #333; margin-top: 3px; }
 
-  .smalls { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px 12px; margin-top: 9px;
-            border-top: 1px solid #b9b0a0; padding-top: 7px; }
-  .sm .art { height: 54px; border-radius: 3px; overflow: hidden; }
-  .sm .art svg { display: block; }
-  .sm .kick { font-size: 9.6px; margin-top: 4px; gap: 4px; }
-  .sm .num { width: 14px; height: 14px; font-size: 9.5px; }
-  .sm h3 { font-size: 16.5px; line-height: 17.5px; font-weight: 700; margin-top: 1px; }
-  .sm p { font-size: 11px; line-height: 13.4px; color: #333; margin-top: 2px; }
+  .smalls { display: grid; grid-template-columns: repeat(6, 1fr); gap: 7px 10px; margin-top: 7px;
+            border-top: 1px solid #b9b0a0; padding-top: 6px; }
+  .sm .kick { font-size: 8.8px; margin-top: 3px; gap: 3px; letter-spacing: 0.5px; }
+  .sm .num { width: 13px; height: 13px; font-size: 9px; }
+  .sm h3 { font-size: 14.6px; line-height: 15.4px; font-weight: 700; margin-top: 1px; }
+  .sm p { font-size: 10.3px; line-height: 12.3px; color: #333; margin-top: 2px; }
 
-  .lower { display: grid; grid-template-columns: 318px 1fr; gap: 16px; margin-top: 8px;
-           border-top: 2px solid #1b1b1b; padding-top: 6px; }
-  .sec { font-size: 11.5px; font-weight: 700; letter-spacing: 1.4px; color: #b3261e; margin-bottom: 4px; }
-  .legend { font-size: 10px; color: #444; margin-top: 3px; display: flex; flex-wrap: wrap; gap: 2px 9px; }
-  .legend i { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 3px; vertical-align: -0.5px; }
-  .list { columns: 2; column-gap: 14px; font-size: 11.2px; line-height: 14.6px; }
-  .list div { break-inside: avoid; display: flex; gap: 5px; border-bottom: 1px dotted #c9c0b0; padding: 0.5px 0; }
-  .list .n { flex: none; width: 17px; height: 13px; margin-top: 1px; border-radius: 2px; color: #fff; font-size: 9.5px;
-             font-weight: 700; text-align: center; line-height: 13px; }
-  .list b { font-weight: 700; }
+  .lower { display: grid; grid-template-columns: 300px 1fr; gap: 14px; margin-top: 7px;
+           border-top: 2px solid #1b1b1b; padding-top: 5px; }
+  .sec { font-size: 11px; font-weight: 700; letter-spacing: 1.4px; color: #b3261e; margin-bottom: 3px; }
+  .legend { font-size: 9.4px; color: #444; margin-top: 2px; display: flex; flex-wrap: wrap; gap: 1px 8px; }
+  .legend i { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 3px; }
+  .nums { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 10px; margin-top: 4px; border-top: 1px solid #c9bfae; padding-top: 3px; }
+  .nums b { display: block; font-size: 15px; line-height: 16px; }
+  .nums span { font-size: 9px; line-height: 10.4px; color: #444; display: block; }
+  .list { columns: 2; column-gap: 12px; font-size: 10.5px; line-height: 12.9px; }
+  .list div { break-inside: avoid; display: flex; gap: 4px; border-bottom: 1px dotted #c9c0b0; padding: 0.4px 0; white-space: nowrap; overflow: hidden; }
+  .list .n { flex: none; width: 16px; height: 12px; margin-top: 1px; border-radius: 2px; color: #fff; font-size: 9px;
+             font-weight: 700; text-align: center; line-height: 12px; }
 
-  .check { margin-top: 7px; background: #fbe3cf; border-left: 4px solid #b3261e; padding: 4px 9px; font-size: 11px; line-height: 14px; }
+  .check { margin-top: 6px; background: #fbe3cf; border-left: 4px solid #b3261e; padding: 3px 8px; font-size: 10.6px; line-height: 13.4px; }
   .check b { color: #b3261e; letter-spacing: 1px; }
-  .foot { display: flex; justify-content: space-between; font-size: 9.6px; color: #555; margin-top: 4px; }
+  .foot { display: flex; justify-content: space-between; font-size: 9.2px; color: #555; margin-top: 3px; }
 </style>
 </head>
 <body>
-<div class="top cond"><span class="l">THE WORLD'S NEWS IN ONE PICTURE</span><span class="r">38 STORIES · 5 CONTINENTS · ALL FROM THIS ONE DAY</span></div>
-<h1 class="mast">Wednesday 18 November 2026</h1>
-<div class="rule"></div>
-
-<div class="band cond" id="band"></div>
-
-<!-- three illustrated leads -->
-<div class="leads">
-  <div class="lead">
-    <div class="art"><svg width="320" height="104" viewBox="0 0 320 104">
-      <rect width="320" height="104" fill="#dfe9f3"/>
-      <rect y="70" width="320" height="34" fill="#9aa3ad"/>
-      <path d="M120 104 L150 70 L170 70 L200 104 Z" fill="#c0392b"/>
-      <!-- airliner -->
-      <g transform="translate(18 34)">
-        <rect x="0" y="14" width="150" height="17" rx="8.5" fill="#fff" stroke="#55606b"/>
-        <path d="M150 22.5 q14 0 18 -3 l-18 -6 Z" fill="#fff" stroke="#55606b"/>
-        <path d="M8 14 L0 -6 L14 -6 L28 14 Z" fill="#1f4e8c"/>
-        <path d="M60 25 L92 46 L104 46 L86 25 Z" fill="#c9d1d9" stroke="#55606b"/>
-        <g fill="#7fa7d4"><circle cx="40" cy="20" r="2"/><circle cx="50" cy="20" r="2"/><circle cx="60" cy="20" r="2"/><circle cx="70" cy="20" r="2"/><circle cx="80" cy="20" r="2"/><circle cx="90" cy="20" r="2"/><circle cx="100" cy="20" r="2"/><circle cx="110" cy="20" r="2"/><circle cx="120" cy="20" r="2"/><circle cx="130" cy="20" r="2"/></g>
-        <rect x="134" y="30" width="2" height="8" fill="#55606b"/>
-      </g>
-      <!-- flags -->
-      <g transform="translate(212 12)">
-        <rect width="44" height="29" fill="#de2910"/><polygon points="8,5 9.8,10 15,10 10.8,13 12.4,18 8,15 3.6,18 5.2,13 1,10 6.2,10" fill="#ffde00"/>
-        <g transform="translate(52 0)"><rect width="44" height="29" fill="#fff"/><g fill="#b22234"><rect width="44" height="2.3"/><rect y="4.5" width="44" height="2.3"/><rect y="9" width="44" height="2.3"/><rect y="13.5" width="44" height="2.3"/><rect y="18" width="44" height="2.3"/><rect y="22.5" width="44" height="2.3"/><rect y="26.7" width="44" height="2.3"/></g><rect width="19" height="15.5" fill="#3c3b6e"/></g>
-        <g transform="translate(26 36)"><rect width="44" height="10" fill="#fff" stroke="#bbb" stroke-width=".6"/><rect y="10" width="44" height="10" fill="#0039a6"/><rect y="20" width="44" height="9" fill="#d52b1e"/></g>
-      </g>
-      <g font-family="Bahnschrift, Arial" font-weight="700" font-size="9.5" fill="#1b1b1b" text-anchor="middle">
-        <text x="234" y="52">XI</text><text x="286" y="52">TRUMP</text><text x="260" y="88" fill="#fff">PUTIN</text>
-      </g>
-      <rect x="6" y="6" width="118" height="17" rx="2" fill="#1b1b1b"/>
-      <text x="65" y="18.5" font-family="Bahnschrift, Arial" font-weight="700" font-size="11" fill="#fff" text-anchor="middle" letter-spacing="1">APEC · SHENZHEN</text>
-    </svg></div>
-    <div class="kick cond" style="color:#7d4bb3"><span class="num" style="background:#7d4bb3">1</span>ASIA · APEC SUMMIT, CHINA</div>
-    <h2 class="cond">Xi greets Trump on the tarmac as APEC opens in Shenzhen</h2>
-    <p>A rare personal welcome; Putin joins Xi's banquet toast. Trump–Xi talks and a first three-way meeting with Putin are set for Thursday.</p>
-  </div>
-
-  <div class="lead">
-    <div class="art"><svg width="320" height="104" viewBox="0 0 320 104">
-      <rect width="320" height="104" fill="#ecdcb8"/>
-      <path d="M0 104 L0 40 Q40 30 70 52 Q110 80 150 70 Q190 62 215 84 Q245 104 320 92 L320 104 Z" fill="#8fbcd8"/>
-      <path d="M40 0 L320 0 L320 70 Q280 66 250 52 Q210 34 170 40 Q120 46 90 22 Q70 8 40 0 Z" fill="#e4cf9f"/>
-      <g font-family="Bahnschrift, Arial" font-weight="700" fill="#5a4630">
-        <text x="230" y="22" font-size="14" letter-spacing="3">IRAN</text>
-        <text x="14" y="26" font-size="10.5">KUWAIT</text>
-        <text x="108" y="99" font-size="10" fill="#1d4d6b">BAHRAIN</text>
-        <text x="238" y="100" font-size="9.5" fill="#1d4d6b">QESHM · HORMUZ</text>
-      </g>
-      <circle cx="40" cy="38" r="4" fill="#1b1b1b"/>
-      <text x="48" y="48" font-family="Bahnschrift, Arial" font-size="9" fill="#1b1b1b">Ali Al Salem air base</text>
-      <path d="M232 34 Q150 6 50 34" fill="none" stroke="#b3261e" stroke-width="2.2" stroke-dasharray="6 4"/>
-      <path d="M215 42 Q170 58 132 78" fill="none" stroke="#b3261e" stroke-width="2.2" stroke-dasharray="6 4"/>
-      <g transform="translate(140 15)" fill="#1b1b1b"><rect x="-9" y="-2" width="18" height="4" rx="2"/><path d="M-3 -2 L0 -9 L3 -2 Z M-3 2 L0 9 L3 2 Z"/></g>
-      <g transform="translate(132 78)"><polygon points="0,-11 3,-4 11,-6 5,0 11,6 3,4 0,11 -3,4 -11,6 -5,0 -11,-6 -3,-4" fill="#f3b31b" stroke="#b3261e"/></g>
-      <rect x="148" y="70" width="70" height="14" fill="#1b1b1b"/>
-      <text x="183" y="80.5" font-family="Bahnschrift, Arial" font-weight="700" font-size="9" fill="#fff" text-anchor="middle">INTERCEPTED</text>
-      <g transform="translate(262 78)"><polygon points="0,-9 2.5,-3 9,-5 4,0 9,5 2.5,3 0,9 -2.5,3 -9,5 -4,0 -9,-5 -2.5,-3" fill="#f07f1b"/></g>
-      <text x="248" y="70" font-family="Bahnschrift, Arial" font-size="8.5" fill="#1b1b1b">US strike, Tue</text>
-    </svg></div>
-    <div class="kick cond" style="color:#c8691c"><span class="num" style="background:#c8691c">2</span>MIDDLE EAST · IRAN WAR</div>
-    <h2 class="cond">Iran fires drones at a US air base in Kuwait</h2>
-    <p>Iran says it targeted Ali Al Salem after US jets hit Qeshm Island; Kuwait confirms no hit. Bahrain intercepts attacks for the third time in a week.</p>
-  </div>
-
-  <div class="lead">
-    <div class="art"><svg width="320" height="104" viewBox="0 0 320 104">
-      <rect width="320" height="104" fill="#dcefe2"/>
-      <rect y="84" width="320" height="20" fill="#7fb38f"/>
-      <!-- smokestacks -->
-      <g fill="#6b6b6b"><rect x="22" y="38" width="16" height="46"/><rect x="46" y="50" width="14" height="34"/><rect x="10" y="62" width="62" height="22"/></g>
-      <g fill="#9a9a9a" opacity=".85"><circle cx="30" cy="30" r="8"/><circle cx="40" cy="20" r="10"/><circle cx="54" cy="10" r="9"/><circle cx="54" cy="42" r="6"/><circle cx="62" cy="34" r="7"/></g>
-      <!-- draft document -->
-      <g transform="translate(106 8)">
-        <rect width="96" height="88" fill="#fff" stroke="#3d5a47"/>
-        <text x="48" y="15" font-family="Bahnschrift, Arial" font-weight="700" font-size="10.5" fill="#1b1b1b" text-anchor="middle">COP31 DRAFT</text>
-        <text x="48" y="26" font-family="Bahnschrift, Arial" font-size="8" fill="#555" text-anchor="middle">18 pages · Australia</text>
-        <g fill="#c7cfc9"><rect x="10" y="34" width="76" height="3"/><rect x="10" y="41" width="70" height="3"/><rect x="10" y="48" width="76" height="3"/><rect x="10" y="74" width="60" height="3"/><rect x="10" y="81" width="72" height="3"/></g>
-        <g transform="rotate(-8 48 62)"><rect x="4" y="54" width="88" height="17" fill="none" stroke="#b3261e" stroke-width="2"/>
-        <text x="48" y="66.5" font-family="Bahnschrift, Arial" font-weight="700" font-size="10" fill="#b3261e" text-anchor="middle">FOSSIL PHASE-OUT</text></g>
-      </g>
-      <!-- split -->
-      <g font-family="Bahnschrift, Arial" font-weight="700" font-size="10" text-anchor="middle">
-        <rect x="216" y="14" width="96" height="30" rx="3" fill="#2e7d4f"/><text x="264" y="27" fill="#fff">NET ZERO 2030</text><text x="264" y="39" fill="#fff" font-size="8.5">for rich nations</text>
-        <rect x="216" y="50" width="96" height="30" rx="3" fill="#1f4e8c"/><text x="264" y="63" fill="#fff">EU: "UNTENABLE"</text><text x="264" y="75" fill="#fff" font-size="8.5">Hoekstra warns</text>
-      </g>
-      <text x="264" y="98" font-family="Bahnschrift, Arial" font-weight="700" font-size="9.5" fill="#fff" text-anchor="middle" letter-spacing="1">ANTALYA, TÜRKİYE</text>
-    </svg></div>
-    <div class="kick cond" style="color:#2e7d4f"><span class="num" style="background:#2e7d4f">3</span>GLOBAL · CLIMATE · COP31</div>
-    <h2 class="cond">COP31 splits over a draft calling for a fossil-fuel phase-out</h2>
-    <p>Co-host Australia's text seeks net zero by 2030 in wealthy nations; EU envoy Hoekstra warns it could make the talks untenable.</p>
+<div class="head">
+  <div class="badge cond"><div class="m">NOV</div><div class="d serif">18</div><div class="w">WED · 2026</div></div>
+  <div class="titles">
+    <div class="kicker cond"><span class="l">THE WORLD'S NEWS IN ONE PICTURE</span><span class="r" id="tally"></span></div>
+    <h1 class="mast serif">Wednesday 18 November 2026</h1>
+    <div class="sub">Every story on this page happened, or was first reported, on Wednesday 18 November 2026.</div>
   </div>
 </div>
+<div class="rule"></div>
+<div class="band cond" id="band"></div>
+<div class="clock cond">
+  <div class="h">THE DAY<br>IN UTC</div>
+  <div class="c"><div class="t">Overnight</div><div class="e">Iran's drones at Kuwait, Bahrain</div></div>
+  <div class="c"><div class="t">07:00</div><div class="e">UK inflation rises to 3.6%</div></div>
+  <div class="c"><div class="t">Shenzhen PM</div><div class="e">Xi greets Trump at the airport</div></div>
+  <div class="c"><div class="t">10:16</div><div class="e">Voyager 1 one light-day out</div></div>
+  <div class="c"><div class="t">11:00</div><div class="e">GTA VI unlocks in New Zealand</div></div>
+  <div class="c"><div class="t">19:00</div><div class="e">Fed minutes: more hikes</div></div>
+  <div class="c"><div class="t">21:00</div><div class="e">Dow closes down 1.1%</div></div>
+</div>
 
-<!-- ten illustrated stories -->
+<div class="leads" id="leads"></div>
 <div class="smalls" id="smalls"></div>
 
 <div class="lower">
   <div>
     <div class="sec cond">WHERE IT HAPPENED</div>
-    <svg id="map" width="318" height="168" viewBox="0 0 318 168"></svg>
-    <div class="legend" id="legend"></div>
+    <svg id="map" width="300" height="150" viewBox="0 0 300 150"></svg>
+    <div class="legend cond" id="legend"></div>
+    <div class="nums cond">
+      <div><b>25.9bn km</b><span>Voyager 1 from Earth: one light-day</span></div>
+      <div><b>141 drones</b><span>fired at Ukraine overnight; 126 downed, Kyiv says</span></div>
+      <div><b>3.6%</b><span>UK inflation in October, up from 3.5%</span></div>
+      <div><b>−1.1%</b><span>the Dow on the day of the Fed minutes</span></div>
+    </div>
   </div>
   <div>
     <div class="sec cond">ALSO ON WEDNESDAY 18 NOVEMBER</div>
@@ -162,8 +108,8 @@
   </div>
 </div>
 
-<div class="check"><b class="cond">DATE CHECK</b> · Left out because they were reported on 17 Nov, not today: Peltola's Alaska Senate win, Nvidia's $115.8bn quarter, the Prague train crash, Mongolia's president resigning. The US strike on Qeshm (Tue night) is shown only as the cause of today's Iranian drones.</div>
-<div class="foot"><span>Every story happened or was first reported on Wednesday 18 November 2026. Claims by warring sides are attributed.</span><span>Sources: Reuters, AP, Anadolu, CNBC, Al Jazeera, UN, WHO. Original drawings.</span></div>
+<div class="check"><b class="cond">DATE CHECK</b> · Left out because they were first reported on Tuesday 17 Nov: the Board of Peace's Gaza report, the Knesset speaker vote, Peltola's Alaska Senate win, Nvidia's results, the Prague train crash, Mongolia's president quitting. Not yet: the Trump–Xi–Putin talks (Thu 19), Akvan's landfall (Fri 20).</div>
+<div class="foot"><span>Claims by warring sides are attributed. Original drawings.</span><span>Sources: Reuters, AP, AFP, Anadolu, CNBC, Al Jazeera, NASA, ONS, Fed, IMD, Amnesty, WHO.</span></div>
 
 <script>
 const REG = {
@@ -172,135 +118,190 @@ const REG = {
   as: { name: 'Asia',        color: '#7d4bb3' },
   af: { name: 'Africa',      color: '#2b8a57' },
   am: { name: 'Americas',    color: '#c0392b' },
+  oc: { name: 'Oceania',     color: '#1f8a8a' },
   gl: { name: 'Global',      color: '#4a5560' },
 };
+const T = (x, y, s, t, f = '#1b1b1b', w = 700, a = 'middle') =>
+  `<text x="${x}" y="${y}" font-family="Bahnschrift, Arial" font-weight="${w}" font-size="${s}" fill="${f}" text-anchor="${a}">${t}</text>`;
+const burst = (x, y, r, f, s = '#b3261e') => {
+  const p = []; for (let i = 0; i < 16; i++) { const rr = i % 2 ? r * 0.45 : r; const a = i * Math.PI / 8;
+    p.push(`${(x + rr * Math.cos(a)).toFixed(1)},${(y + rr * Math.sin(a)).toFixed(1)}`); }
+  return `<polygon points="${p.join(' ')}" fill="${f}" stroke="${s}" stroke-width=".8"/>`;
+};
+const usFlag = (x, y, w) => { const h = w * 0.66; let s = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#fff"/>`;
+  for (let i = 0; i < 7; i++) s += `<rect x="${x}" y="${(y + i * h / 6.5).toFixed(1)}" width="${w}" height="${(h / 13).toFixed(1)}" fill="#b22234"/>`;
+  return s + `<rect x="${x}" y="${y}" width="${w * 0.42}" height="${h * 0.54}" fill="#3c3b6e"/>`; };
+const euFlag = (x, y, w) => { const h = w * 0.66; let s = `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#003399"/>`;
+  for (let i = 0; i < 12; i++) s += `<circle cx="${(x + w / 2 + h * 0.32 * Math.cos(i * Math.PI / 6)).toFixed(1)}" cy="${(y + h / 2 + h * 0.32 * Math.sin(i * Math.PI / 6)).toFixed(1)}" r="${(w / 34).toFixed(1)}" fill="#ffcc00"/>`;
+  return s; };
 
-// The ten illustrated stories: [region, kicker, headline, detail, picture]
-const SMALL = [
-  ['me', 'GAZA · CEASEFIRE', 'Gaza truce may collapse, Board of Peace warns',
-   'Its report to the UN Security Council faults Israel and Hamas; Israel starts an operation in central Gaza.', 'truce'],
-  ['eu', 'UKRAINE · DIPLOMACY', 'Europe joins renewed US-led peace talks',
-   'US envoys due in Berlin on Thursday; Russian attacks kill at least five, Odesa hit.', 'talks'],
-  ['as', 'MYANMAR · ASEAN', 'Myanmar to review its ties with ASEAN',
-   'Min Aung Hlaing tells parliament the bloc has treated Myanmar unfairly.', 'asean'],
-  ['af', 'HORN OF AFRICA', 'Ethiopia and Eritrea mass troops on border',
-   'Both armies are within striking distance of each other, Reuters sources say.', 'border'],
-  ['gl', 'MARKETS · GOLD', 'Gold sinks below $3,800 an ounce',
-   'Spot gold falls 1.5% to $3,792, its lowest in over a year, as Fed officials signal more rate rises.', 'gold'],
-  ['af', 'SUDAN · WAR', 'UN: 2,230 civilians killed in Sudan this year',
-   'Most died in drone strikes between January and October, the UN rights office says.', 'drone'],
-  ['am', 'US · CONGRESS', 'Democrats pick Jeffries for House speaker',
-   '251 of 262 votes in a closed-door ballot; the full House votes on 3 January.', 'gavel'],
-  ['am', 'US · TECH', 'Nvidia board rules out a Huang return',
-   'The ex-CEO is to testify to Congress; chip stocks give up early gains.', 'chip'],
-  ['gl', 'SPORT · FIFA', 'Diallo to challenge Infantino for FIFA',
-   "France's FA chief, backed by UEFA members, runs in the March 2027 vote.", 'ball'],
-  ['gl', 'CULTURE · GAMES', 'GTA VI goes on sale at midnight',
-   'Thirteen years after GTA V; 14.9m pre-orders worth about $1.45bn, Sensor Tower says.', 'pad'],
+// Lead pictures, 236 x 90.
+const LEADPIC = {
+  iran: c => `<rect width="236" height="90" fill="#ecdcb8"/>
+    <path d="M0 90 L0 36 Q30 28 52 46 Q82 70 112 62 Q142 54 160 72 Q184 90 236 80 L236 90 Z" fill="#8fbcd8"/>
+    <path d="M30 0 L236 0 L236 60 Q206 56 184 44 Q154 28 124 34 Q88 40 66 18 Q52 6 30 0 Z" fill="#e4cf9f"/>
+    ${T(184, 18, 13, 'IRAN', '#5a4630')}${T(30, 20, 9.5, 'KUWAIT', '#5a4630')}${T(98, 87, 9, 'BAHRAIN', '#1d4d6b')}${T(196, 88, 8.5, 'QESHM', '#1d4d6b')}
+    <circle cx="28" cy="31" r="3.5" fill="#1b1b1b"/>${T(34, 40, 8, 'Ali Al Salem base', '#1b1b1b', 400, 'start')}
+    <path d="M172 26 Q110 2 36 28" fill="none" stroke="${c}" stroke-width="2" stroke-dasharray="5 3"/>
+    <path d="M160 34 Q130 50 102 66" fill="none" stroke="${c}" stroke-width="2" stroke-dasharray="5 3"/>
+    <g transform="translate(104 13)" fill="#1b1b1b"><rect x="-8" y="-2" width="16" height="4" rx="2"/><path d="M-3 -2 L0 -8 L3 -2 Z M-3 2 L0 8 L3 2 Z"/></g>
+    ${burst(102, 66, 9, '#f3b31b')}<rect x="114" y="60" width="62" height="12" fill="#1b1b1b"/>${T(145, 69, 8.5, 'INTERCEPTED', '#fff')}
+    ${burst(200, 72, 7, '#f07f1b', '#7a3b0b')}${T(206, 64, 7.5, 'US strike, Tue', '#1b1b1b', 400, 'start')}`,
+  apec: c => `<rect width="236" height="90" fill="#dfe9f3"/>
+    <g fill="#b8c7d6">${[0,1,2,3,4,5,6].map(i => `<rect x="${118 + i * 17}" y="${26 + (i * 13) % 22}" width="13" height="${40 - (i * 13) % 22}"/>`).join('')}</g>
+    <rect y="62" width="236" height="28" fill="#9aa3ad"/><path d="M92 90 L112 62 L126 62 L146 90 Z" fill="#c0392b"/>
+    <g transform="translate(8 32)"><rect x="0" y="10" width="112" height="14" rx="7" fill="#fff" stroke="#55606b"/>
+      <path d="M112 17 q11 0 14 -3 l-14 -5 Z" fill="#fff" stroke="#55606b"/><path d="M6 10 L0 -6 L11 -6 L22 10 Z" fill="#1f4e8c"/>
+      <path d="M44 20 L68 36 L77 36 L64 20 Z" fill="#c9d1d9" stroke="#55606b"/>
+      <g fill="#7fa7d4">${[0,1,2,3,4,5,6,7].map(i => `<circle cx="${32 + i * 9}" cy="15" r="1.7"/>`).join('')}</g></g>
+    <rect x="160" y="8" width="30" height="20" fill="#de2910"/><polygon points="166,11 167.3,14.6 171,14.6 168,16.8 169.2,20.4 166,18.2 162.8,20.4 164,16.8 161,14.6 164.7,14.6" fill="#ffde00"/>
+    ${usFlag(196, 8, 30)}${T(175, 38, 8.5, 'XI')}${T(211, 38, 8.5, 'TRUMP')}
+    <rect x="6" y="6" width="98" height="15" rx="2" fill="#1b1b1b"/>${T(55, 17, 9.5, 'APEC · SHENZHEN', '#fff')}
+    <rect x="134" y="70" width="98" height="15" rx="2" fill="#fff"/>${T(183, 81, 8, 'THU: XI · TRUMP · PUTIN', c)}`,
+  ukraine: c => `<rect width="236" height="90" fill="#1d2a44"/>
+    <g fill="#33415e">${[0,1,2,3,4,5,6,7,8].map(i => `<rect x="${i * 15}" y="${52 + (i * 7) % 18}" width="13" height="${38 - (i * 7) % 18}"/>`).join('')}</g>
+    ${[[20,14],[50,24],[84,10],[104,30]].map(([x, y]) => `<g transform="translate(${x} ${y}) rotate(20)" fill="#d9d9d9"><rect x="-6" y="-1.5" width="12" height="3"/><path d="M-2 -1.5 L0 -6 L2 -1.5 Z M-2 1.5 L0 6 L2 1.5 Z"/></g>`).join('')}
+    ${burst(40, 54, 9, '#f3b31b', '#f07f1b')}${burst(98, 60, 7, '#f3b31b', '#f07f1b')}
+    <rect x="4" y="76" width="122" height="12" fill="#f3b31b"/>${T(65, 85, 8.5, '141 FIRED · 126 DOWNED')}
+    ${euFlag(146, 10, 40)}<rect x="190" y="10" width="40" height="13" fill="#0057b7"/><rect x="190" y="23" width="40" height="13.4" fill="#ffd700"/>
+    ${T(188, 66, 22, '€45bn', '#fff')}${T(188, 80, 8, 'EU LOAN FOR 2027', '#ffd700')}`,
+  voyager: c => `<rect width="236" height="90" fill="#0d1530"/>
+    ${[[12,10],[40,72],[70,20],[96,82],[132,8],[160,60],[200,14],[226,70],[180,84],[58,46]].map(([x, y]) => `<circle cx="${x}" cy="${y}" r=".9" fill="#fff"/>`).join('')}
+    <circle cx="22" cy="50" r="9" fill="#2f7fd1"/><path d="M16 46 q4 -3 8 0 q-2 4 -6 4 Z M22 54 q4 -2 6 1 q-3 2 -6 0 Z" fill="#3fae5a"/>
+    ${T(22, 70, 8, 'EARTH', '#cfd8ea')}
+    <path d="M34 50 L176 50" stroke="#f3b31b" stroke-width="1.6" stroke-dasharray="5 3"/>
+    <g transform="translate(196 50)" stroke="#cfd8ea" fill="none" stroke-width="1.4"><path d="M-14 -10 A14 14 0 0 1 -14 10"/><path d="M-14 0 L8 0 M-4 -6 L-4 6 M8 0 L18 -10 M8 0 L18 10"/></g>
+    ${T(105, 26, 15, '1 LIGHT-DAY', '#f3b31b')}${T(105, 40, 8.5, '25.9 billion km · signal takes 24 h', '#cfd8ea', 400)}
+    ${T(196, 76, 8, 'VOYAGER 1', '#cfd8ea')}${T(196, 86, 7, 'launched 1977', '#8ea0c2', 400)}
+    <rect x="80" y="62" width="50" height="14" rx="2" fill="#f3b31b"/>${T(105, 72.5, 9, '10:16 UTC')}`,
+};
+
+// Small pictures, 152 x 48.
+const SMALLPIC = {
+  cop: c => `<rect width="152" height="48" fill="#dcefe2"/><g fill="#6b6b6b"><rect x="14" y="16" width="10" height="28"/><rect x="28" y="24" width="9" height="20"/><rect x="8" y="34" width="36" height="10"/></g>
+    <g fill="#9a9a9a"><circle cx="20" cy="11" r="5"/><circle cx="28" cy="5" r="5"/></g>
+    <rect x="58" y="5" width="56" height="38" fill="#fff" stroke="#3d5a47"/>${T(86, 15, 7.5, 'COP31 DRAFT')}
+    <g transform="rotate(-8 86 30)"><rect x="60" y="23" width="52" height="12" fill="none" stroke="#b3261e" stroke-width="1.5"/>${T(86, 32, 6.6, 'FOSSIL PHASE-OUT', '#b3261e')}</g>
+    ${T(134, 22, 7.5, 'ANTALYA', '#2e7d4f')}${T(134, 32, 7, 'split', '#2e7d4f', 400)}`,
+  fed: c => `<rect width="152" height="48" fill="#f2e6e4"/><path d="M8 16 L36 6 L64 16 Z" fill="#8a8a8a"/><rect x="8" y="40" width="56" height="4" fill="#8a8a8a"/>
+    ${[0,1,2,3].map(i => `<rect x="${12 + i * 14}" y="18" width="5" height="22" fill="#a9a9a9"/>`).join('')}${T(36, 15, 6.5, 'FED', '#fff')}
+    <path d="M78 8 L104 34" stroke="#b3261e" stroke-width="3.5"/><path d="M96 36 L108 38 L106 26 Z" fill="#b3261e"/>
+    ${T(130, 22, 11, 'DOW', '#1b1b1b')}${T(130, 36, 11, '−1.1%', '#b3261e')}`,
+  cpi: c => `<rect width="152" height="48" fill="#e4e9f3"/><path d="M14 42 L138 42" stroke="#555"/>
+    <rect x="36" y="18" width="26" height="24" fill="#9db0d3"/><rect x="82" y="14" width="26" height="28" fill="#1f4e8c"/>
+    ${T(49, 14, 9, '3.5%', '#555')}${T(95, 10, 10, '3.6%', '#1f4e8c')}${T(49, 33, 7, 'SEP', '#fff')}${T(95, 33, 7, 'OCT', '#fff')}${T(128, 30, 8, 'UK CPI', '#1b1b1b')}`,
+  cyclone: c => `<rect width="152" height="48" fill="#cfe3ee"/><path d="M0 0 L46 0 Q40 14 50 26 Q42 40 48 48 L0 48 Z" fill="#e6d6b0"/>
+    ${T(22, 20, 7.5, 'INDIA', '#5a4630')}<circle cx="104" cy="24" r="16" fill="#fff" opacity=".55"/>
+    <path d="M104 24 m-12 0 a12 12 0 1 1 6 10 M104 24 m12 0 a12 12 0 1 1 -6 -10" stroke="#1f4e8c" stroke-width="2.4" fill="none"/>
+    <circle cx="104" cy="24" r="2.5" fill="#1f4e8c"/><path d="M84 30 L56 34" stroke="#b3261e" stroke-width="1.5" stroke-dasharray="3 2"/>
+    ${T(126, 44, 7.5, 'AKVAN · FRI', '#1b1b1b')}`,
+  sudan: c => `<rect width="152" height="48" fill="#efe3d4"/>
+    <g transform="translate(38 20)" fill="#3a3a3a"><rect x="-20" y="-2" width="40" height="4.5" rx="2"/><path d="M-5 -2 L0 -12 L5 -2 Z M-5 2.5 L0 12 L5 2.5 Z"/></g>
+    ${T(108, 26, 19, '37', '#b3261e')}${T(108, 40, 7.5, 'KILLED · EL OBEID')}`,
+  border: c => `<rect width="152" height="48" fill="#e2efe6"/><path d="M76 2 L72 12 L80 22 L72 34 L78 46" stroke="#1b1b1b" stroke-width="1.6" fill="none" stroke-dasharray="4 3"/>
+    <path d="M14 24 L52 24 L52 18 L64 27 L52 36 L52 30 L14 30 Z" fill="${c}"/><path d="M138 24 L100 24 L100 18 L88 27 L100 36 L100 30 L138 30 Z" fill="#6d4c2f"/>
+    ${T(36, 13, 7.5, 'ETHIOPIA')}${T(116, 13, 7.5, 'ERITREA')}`,
+  gaza: c => `<rect width="152" height="48" fill="#f3e3d0"/><path d="M0 0 L30 0 L30 48 L0 48 Z" fill="#9cc3dc"/>${T(15, 26, 6.5, 'SEA', '#1d4d6b')}
+    <g transform="translate(64 26)" fill="#5c6b4a"><rect x="-16" y="-3" width="32" height="10" rx="2"/><rect x="-8" y="-9" width="16" height="7" rx="2"/><rect x="6" y="-7" width="18" height="2.5"/></g>
+    <rect x="-16" y="0" width="0" height="0"/><path d="M48 36 L80 36" stroke="#3a3a3a" stroke-width="3"/>
+    ${T(118, 22, 8, 'NUSEIRAT', '#1b1b1b')}${T(118, 33, 7, 'central Gaza', '#555', 400)}`,
+  factory: c => `<rect width="152" height="48" fill="#ede6f4"/><path d="M8 44 L8 20 L22 28 L22 20 L36 28 L36 20 L50 28 L50 12 L60 12 L60 44 Z" fill="#7a7a8a"/>
+    <rect x="70" y="10" width="40" height="14" fill="#b3261e" transform="rotate(-6 90 17)"/>${T(90, 20, 8.5, 'SHUT', '#fff')}
+    ${T(130, 30, 16, '55', '#1b1b1b')}${T(90, 42, 7.5, 'GARMENT FACTORIES')}`,
+  gavel: c => `<rect width="152" height="48" fill="#f4e2df"/><g transform="rotate(-30 36 22)"><rect x="22" y="14" width="28" height="11" rx="3" fill="#7a4a24"/><rect x="33" y="25" width="5" height="18" fill="#a0672f"/></g>
+    <rect x="12" y="40" width="42" height="5" rx="2" fill="#5d3a1b"/>${T(104, 26, 17, '251–11', c)}${T(104, 39, 7.5, 'CAUCUS VOTE')}`,
+  ipo: c => `<rect width="152" height="48" fill="#eae6dd"/><path d="M12 38 L36 28 L56 32 L80 14" stroke="#2b8a57" stroke-width="2.5" fill="none"/>
+    <rect x="88" y="8" width="54" height="30" rx="3" fill="#1b1b1b"/>${T(115, 26, 15, '$83', '#f3b31b')}${T(115, 34.5, 6.5, 'ABOVE $70–78', '#fff', 400)}${T(46, 46, 7, 'NASDAQ: ANT · THU', '#555')}`,
+  asean: c => `<rect width="152" height="48" fill="#efe6f6"/><circle cx="50" cy="24" r="16" fill="none" stroke="#c9b6dd" stroke-width="1.6"/>
+    ${[0,1,2,3,4,5,6,7,8,9].map(i => `<circle cx="${(50 + 16 * Math.cos(i * Math.PI / 5)).toFixed(1)}" cy="${(24 + 16 * Math.sin(i * Math.PI / 5)).toFixed(1)}" r="3.2" fill="${c}"/>`).join('')}
+    <path d="M70 24 L88 24" stroke="#1b1b1b" stroke-width="1.3" stroke-dasharray="3 2"/><circle cx="93" cy="24" r="4.5" fill="#b3261e"/>${T(124, 27, 8.5, 'MYANMAR')}`,
+  gta: c => `<rect width="152" height="48" fill="#e8e3f0"/><rect x="12" y="12" width="52" height="24" rx="12" fill="#2d2d38"/>
+    <g fill="#fff"><rect x="21" y="22" width="11" height="4"/><rect x="24.5" y="18.5" width="4" height="11"/><circle cx="50" cy="20" r="2.3"/><circle cx="55" cy="26" r="2.3"/></g>
+    <rect x="76" y="8" width="66" height="26" rx="3" fill="#1b1b1b"/>${T(109, 27, 16, '00:00', '#f3b31b')}${T(109, 44, 7, 'NZ FIRST · 11:00 UTC', '#555')}`,
+};
+
+const LEADS = [
+  ['me', 'IRAN WAR', 'Reuters · AP', 'Iran fires drones at a US air base in Kuwait',
+   'Iran says it aimed at Ali Al Salem after US jets hit Qeshm Island; Kuwait confirms no hit. Bahrain\'s third interception in a week.', 'iran'],
+  ['as', 'APEC SUMMIT', 'CNBC · AP', 'Xi greets Trump on the tarmac as APEC opens',
+   'A rare personal welcome; Putin joins Xi\'s banquet toast. Trump–Xi talks and a first three-way meeting with Putin are set for Thursday.', 'apec'],
+  ['eu', 'UKRAINE WAR', 'AJ · Reuters', 'Russian strikes kill five; EU offers €45bn',
+   'Kyiv says it downed 126 of 141 drones; Odesa is hit. Brussels proposes the 2027 loan as Europe joins renewed US-led peace talks.', 'ukraine'],
+  ['gl', 'SPACE · NASA', 'NASA · EarthSky', 'Voyager 1 reaches one light-day from Earth',
+   'The first human-made object so far out: at 10:16 UTC the 1977 probe passed 25.9bn km, so a command now takes a full day to arrive.', 'voyager'],
 ];
-
-// Little flat pictures for the ten stories, 186 x 54.
-function pic(kind, c) {
-  const T = (x, y, s, t, f = '#1b1b1b', w = 700) =>
-    `<text x="${x}" y="${y}" font-family="Bahnschrift, Arial" font-weight="${w}" font-size="${s}" fill="${f}" text-anchor="middle">${t}</text>`;
-  switch (kind) {
-    case 'truce': return `<rect width="186" height="54" fill="#f3e3d0"/>
-      <path d="M58 30 q-14 -14 -26 -4 q10 0 14 8 q-12 4 -20 14 q18 0 28 -8 l14 6 l4 -6 l-8 -6 q10 -8 2 -14 Z" fill="#fff" stroke="#8a7a66"/>
-      <path d="M38 40 l6 -8 l-4 -4 l6 -6" stroke="${c}" stroke-width="2" fill="none"/>
-      <rect x="92" y="13" width="84" height="28" rx="3" fill="#1b1b1b"/>${T(134, 25, 9, 'REPORT TO UN', '#fff')}${T(134, 36, 9, 'TRUCE AT RISK', '#f3b31b')}`;
-    case 'talks': return `<rect width="186" height="54" fill="#e3e9f4"/>
-      <ellipse cx="93" cy="34" rx="60" ry="12" fill="#a87a4f"/>
-      <g fill="#003399"><rect x="30" y="8" width="34" height="22"/></g>
-      ${[0,1,2,3,4,5,6,7].map(i => `<circle cx="${47 + 7 * Math.cos(i * Math.PI / 4)}" cy="${19 + 7 * Math.sin(i * Math.PI / 4)}" r="1.4" fill="#ffcc00"/>`).join('')}
-      <rect x="122" y="8" width="34" height="22" fill="#fff"/><g fill="#b22234">${[0,1,2,3,4].map(i => `<rect x="122" y="${8 + i * 4.6}" width="34" height="2.2"/>`).join('')}</g><rect x="122" y="8" width="14" height="11" fill="#3c3b6e"/>
-      <rect x="62" y="38" width="62" height="13" rx="2" fill="#1b1b1b"/>${T(93, 48, 8.5, 'BERLIN · THU', '#fff')}`;
-    case 'asean': return `<rect width="186" height="54" fill="#efe6f6"/>
-      <circle cx="70" cy="27" r="20" fill="none" stroke="#c9b6dd" stroke-width="2"/>
-      ${[0,1,2,3,4,5,6,7,8,9].map(i => `<circle cx="${70 + 20 * Math.cos(i * Math.PI / 5)}" cy="${27 + 20 * Math.sin(i * Math.PI / 5)}" r="4" fill="${c}"/>`).join('')}
-      <path d="M96 27 L118 27" stroke="#1b1b1b" stroke-width="1.5" stroke-dasharray="3 2"/><circle cx="124" cy="27" r="5" fill="#b3261e"/>
-      ${T(156, 31, 9.5, 'MYANMAR')}`;
-    case 'border': return `<rect width="186" height="54" fill="#e2efe6"/>
-      <path d="M93 2 L88 14 L97 26 L89 40 L95 52" stroke="#1b1b1b" stroke-width="2" fill="none" stroke-dasharray="5 3"/>
-      <path d="M30 27 L72 27 L72 20 L84 30 L72 40 L72 33 L30 33 Z" fill="${c}"/>
-      <path d="M156 27 L114 27 L114 20 L102 30 L114 40 L114 33 L156 33 Z" fill="#6d4c2f"/>
-      ${T(46, 16, 8.5, 'ETHIOPIA')}${T(140, 16, 8.5, 'ERITREA')}`;
-    case 'gold': return `<rect width="186" height="54" fill="#f6edd2"/>
-      <g fill="#e1b12c" stroke="#9c7a12"><path d="M20 44 L28 32 L58 32 L66 44 Z"/><path d="M50 44 L58 32 L88 32 L96 44 Z"/><path d="M35 32 L43 20 L73 20 L81 32 Z"/></g>
-      <path d="M110 12 L134 36" stroke="#b3261e" stroke-width="4"/><path d="M124 38 L138 40 L136 26 Z" fill="#b3261e"/>
-      ${T(162, 24, 12, '$3,792', '#b3261e')}${T(162, 37, 9, '−1.5%', '#b3261e')}`;
-    case 'drone': return `<rect width="186" height="54" fill="#efe3d4"/>
-      <g transform="translate(52 22)" fill="#3a3a3a"><rect x="-22" y="-2" width="44" height="5" rx="2"/><path d="M-6 -2 L0 -14 L6 -2 Z M-6 3 L0 15 L6 3 Z"/><path d="M-22 0 L-28 -6 L-24 0 Z"/></g>
-      ${T(132, 30, 20, '2,230', '#b3261e')}${T(132, 44, 8.5, 'CIVILIANS · JAN–OCT')}`;
-    case 'gavel': return `<rect width="186" height="54" fill="#f4e2df"/>
-      <g transform="rotate(-30 52 26)"><rect x="34" y="16" width="34" height="14" rx="3" fill="#7a4a24"/><rect x="48" y="30" width="6" height="22" fill="#a0672f"/></g>
-      <rect x="22" y="44" width="50" height="6" rx="2" fill="#5d3a1b"/>
-      ${T(132, 28, 18, '251/262', c)}${T(132, 42, 8.5, 'CAUCUS VOTE')}`;
-    case 'chip': return `<rect width="186" height="54" fill="#e6efe0"/>
-      <rect x="30" y="10" width="34" height="34" rx="3" fill="#2a2a2a"/><rect x="38" y="18" width="18" height="18" fill="#76b900"/>
-      ${[0,1,2,3].map(i => `<rect x="${34 + i * 8}" y="5" width="3" height="5" fill="#888"/><rect x="${34 + i * 8}" y="44" width="3" height="5" fill="#888"/>`).join('')}
-      <rect x="86" y="15" width="84" height="24" rx="3" fill="none" stroke="#b3261e" stroke-width="2"/>${T(128, 31, 10.5, 'NO RETURN', '#b3261e')}`;
-    case 'ball': return `<rect width="186" height="54" fill="#e5ebe4"/>
-      <circle cx="93" cy="27" r="15" fill="#fff" stroke="#1b1b1b"/><polygon points="93,20 99,24 97,31 89,31 87,24" fill="#1b1b1b"/>
-      ${T(42, 25, 10, 'DIALLO')}${T(42, 37, 8, 'FRANCE', '#555', 400)}${T(144, 25, 10, 'INFANTINO')}${T(144, 37, 8, 'INCUMBENT', '#555', 400)}`;
-    case 'pad': return `<rect width="186" height="54" fill="#e8e3f0"/>
-      <rect x="22" y="14" width="60" height="28" rx="14" fill="#2d2d38"/><g fill="#fff"><rect x="32" y="26" width="12" height="4"/><rect x="36" y="22" width="4" height="12"/><circle cx="66" cy="24" r="2.6"/><circle cx="72" cy="30" r="2.6"/></g>
-      <rect x="98" y="12" width="74" height="30" rx="3" fill="#1b1b1b"/>${T(135, 33, 18, '00:00', '#f3b31b')}`;
-  }
-}
-
-const smallsEl = document.getElementById('smalls');
-SMALL.forEach(([r, kick, head, body, kind], i) => {
-  const c = REG[r].color;
-  smallsEl.insertAdjacentHTML('beforeend', `<div class="sm">
-    <div class="art"><svg width="186" height="54" viewBox="0 0 186 54">${pic(kind, c)}</svg></div>
-    <div class="kick cond" style="color:${c}"><span class="num" style="background:${c}">${i + 4}</span>${kick}</div>
-    <h3 class="cond">${head}</h3><p>${body}</p></div>`);
-});
-
-// The rest of the day: [region, place, text]
+const SMALL = [
+  ['gl', 'CLIMATE · COP31', 'AFP', 'COP31 splits over a fossil-fuel phase-out', 'Australia\'s draft seeks net zero by 2030 in rich nations; the EU calls it untenable.', 'cop'],
+  ['am', 'US · MARKETS', 'Fed · AP', 'Fed minutes point to more rate rises', 'Nearly all officials see more hikes; the Dow drops 1.1%.', 'fed'],
+  ['eu', 'UK · ECONOMY', 'ONS', 'UK inflation climbs to 3.6%', 'October prices rise on fuel and a tobacco tax, up from 3.5%.', 'cpi'],
+  ['as', 'INDIA · WEATHER', 'IMD', 'Cyclone Akvan nears India\'s east coast', 'Landfall is forecast for Friday; Odisha and Andhra prepare evacuations.', 'cyclone'],
+  ['af', 'SUDAN · WAR', 'Amnesty', 'Amnesty: RSF drones killed 37 in El Obeid', 'It urges a war-crimes inquiry; the RSF blames the army.', 'sudan'],
+  ['af', 'HORN OF AFRICA', 'Reuters', 'Ethiopia and Eritrea mass troops on border', 'Both armies are within striking distance, sources say.', 'border'],
+  ['me', 'GAZA', 'Reuters', 'Israeli tanks push into central Gaza', 'Three killed near Nuseirat, hospitals say; the army cites a tunnel.', 'gaza'],
+  ['as', 'BANGLADESH', 'Daily Star', 'Wage protests shut 55 garment factories', 'Workers block a highway; about 300 arrested, police say.', 'factory'],
+  ['am', 'US · CONGRESS', 'AP', 'Democrats pick Jeffries for Speaker, 251–11', 'The full House votes on 3 January.', 'gavel'],
+  ['am', 'US · BUSINESS', 'Reuters', 'Anthropic prices its IPO at $83 a share', 'Above its $70–78 range; trading starts on Thursday.', 'ipo'],
+  ['as', 'MYANMAR · ASEAN', 'AP', 'Myanmar to review its ties with ASEAN', 'Min Aung Hlaing tells parliament the bloc is unfair.', 'asean'],
+  ['gl', 'CULTURE · GAMES', 'Anadolu', 'GTA VI goes on sale at midnight', 'Thirteen years on; 14.9m pre-orders, Sensor Tower says.', 'gta'],
+];
 const LIST = [
   ['me', 'Gaza', 'WHO urges "unobstructed" aid before winter'],
-  ['me', 'West Bank', 'UK, Australia sanction settler firms'],
-  ['me', 'Israel', 'Knesset backs media-law repeal, 63–49'],
+  ['me', 'West Bank', 'UK, Australia sanction settler firms, Weiss'],
   ['me', 'Yemen', 'Saudi-led coalition hits 60 Houthi sites'],
   ['me', 'Saudi Arabia', 'plans up to 6 months of Houthi war'],
   ['me', 'Israel–Iran', 'Mossad chief urged new strikes: sources'],
+  ['me', 'Lebanon', 'World Bank says rebuilding is lagging'],
   ['gl', 'Oil', 'Brent slips 0.6% to $92.6 a barrel'],
-  ['as', 'Malaysia', 'Anwar at APEC: multilateral order must change'],
+  ['gl', 'Gold', 'below $3,800, lowest in over a year'],
+  ['as', 'Malaysia', 'Anwar: multilateral order must change'],
   ['eu', 'Russia', 'Putin tells APEC Europe is losing industry'],
+  ['as', 'South Korea', 'Lee seeks Xi\'s help on the North'],
   ['as', 'Hong Kong', 'hospital sorry for ovaries removed in error'],
   ['as', 'ICJ', 'Rohingya genocide ruling set for Thursday'],
+  ['as', 'Bangladesh', 'MP\'s clinic bombed in Gopalganj'],
+  ['as', 'Kashmir', 'Indian forces kill a militant commander'],
   ['af', 'DR Congo', 'WHO keeps Ebola a global emergency'],
-  ['af', 'South Africa', "rebukes Nigeria's new envoy"],
+  ['af', 'South Africa', 'rebukes Nigeria\'s new envoy'],
+  ['af', 'Senegal', 'migrant boat capsizes; at least one dead'],
   ['af', 'Egypt–US', 'Book Award finalist barred from US'],
   ['eu', 'UK', 'Lammy urges Labour to back EU rejoin vote'],
-  ['eu', 'UK', 'US officer held as Russia spy sent to US'],
+  ['eu', 'UK', 'hands US Army spy suspect to US custody'],
   ['eu', 'France', 'Le Pen proposes retirement at 60 to 62'],
-  ['eu', 'Tennis', 'Alcaraz routs Tiafoe at the ATP Finals'],
+  ['eu', 'FIFA', 'France\'s Diallo to challenge Infantino'],
+  ['oc', 'Australia', 'Tame Impala sweeps the ARIA Awards'],
+  ['am', 'Haiti', 'Salvadoran troops raid gang boss\'s home'],
+  ['am', 'Venezuela', 'Hegseth in Caracas for defence talks'],
   ['am', 'Brazil', 'police probe Vance-linked donor network'],
   ['am', 'Ecuador', 'fishermen sue US over drone attack'],
+  ['am', 'Colombia', 'economy shrinks 0.8% in third quarter'],
   ['am', 'US', 'Rubio: no cyberattack behind outages'],
-  ['am', 'US', 'Visa traces incident to Asian supplier'],
-  ['am', 'US', "Fed's Lisa Cook rejects hearing panel"],
-  ['am', 'US', 'migrant children held for a month: AP'],
+  ['am', 'US', 'Fed\'s Lisa Cook rejects hearing panel'],
+  ['am', 'US', 'migrant children held a month, AP finds'],
   ['am', 'US', 'Senate AI hearings after attack-plan tests'],
+  ['am', 'Canada', 'Carney to meet Trump at APEC'],
 ];
-const listEl = document.getElementById('list');
-LIST.forEach(([r, place, text], i) => {
-  listEl.insertAdjacentHTML('beforeend',
-    `<div><span class="n" style="background:${REG[r].color}">${i + 14}</span><span><b>${place}:</b> ${text}</span></div>`);
-});
 
-// Region band: count every story on the page by region.
-const regionOf = ['as', 'me', 'gl', ...SMALL.map(s => s[0]), ...LIST.map(s => s[0])];
-const counts = {};
-regionOf.forEach(r => { counts[r] = (counts[r] || 0) + 1; });
-document.getElementById('band').innerHTML = ['eu', 'me', 'as', 'af', 'am', 'gl'].map(r =>
-  `<div style="background:${REG[r].color};flex:${counts[r]}">${REG[r].name.toUpperCase()} ${counts[r]}</div>`).join('');
-if (regionOf.length !== 38) document.title = 'COUNT MISMATCH ' + regionOf.length;
+const card = (cls, w, h, pics) => ([r, kick, src, head, body, kind], n) => {
+  const c = REG[r].color, tag = cls === 'lead' ? 'h2' : 'h3';
+  return `<div class="${cls}"><div class="art"><svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}">${pics[kind](c)}</svg></div>
+    <div class="kick cond" style="color:${c}"><span class="num" style="background:${c}">${n}</span>${cls === 'lead' ? REG[r].name.toUpperCase() + ' · ' : ''}${kick}<span class="src">${src}</span></div>
+    <${tag} class="cond">${head}</${tag}><p>${body}</p></div>`;
+};
+document.getElementById('leads').innerHTML = LEADS.map((s, i) => card('lead', 236, 90, LEADPIC)(s, i + 1)).join('');
+document.getElementById('smalls').innerHTML = SMALL.map((s, i) => card('sm', 152, 48, SMALLPIC)(s, i + 5)).join('');
+document.getElementById('list').innerHTML = LIST.map(([r, place, text], i) =>
+  `<div><span class="n" style="background:${REG[r].color}">${i + 17}</span><span><b>${place}:</b> ${text}</span></div>`).join('');
 
-// World map, equirectangular, cropped to lon -130..160, lat 72..-45.
-const W = 318, H = 168, LON0 = -130, LON1 = 160, LAT0 = 72, LAT1 = -45;
+// Count every story by region for the band and the tally.
+const all = [...LEADS, ...SMALL, ...LIST].map(s => s[0]);
+const counts = {}; all.forEach(r => { counts[r] = (counts[r] || 0) + 1; });
+const order = ['eu', 'me', 'as', 'af', 'am', 'oc', 'gl'];
+document.getElementById('band').innerHTML = order.map(r =>
+  `<div style="background:${REG[r].color};flex:${counts[r] + 2}">${REG[r].name.toUpperCase()} ${counts[r]}</div>`).join('');
+document.getElementById('tally').textContent = `${all.length} STORIES · 6 CONTINENTS · 16 DRAWN · ALL FROM THIS ONE DAY`;
+
+// World map, equirectangular, lon -130..160, lat 72..-45.
+const W = 300, H = 150, LON0 = -130, LON1 = 160, LAT0 = 72, LAT1 = -45;
 const px = (lon, lat) => [((lon - LON0) / (LON1 - LON0) * W).toFixed(1), ((LAT0 - lat) / (LAT0 - LAT1) * H).toFixed(1)];
 const LAND = [
   [[-168,66],[-140,70],[-95,72],[-80,63],[-60,55],[-55,48],[-70,43],[-76,35],[-81,25],[-97,26],[-97,19],[-88,15],[-80,8],[-85,11],[-105,20],[-112,30],[-118,34],[-124,40],[-124,48],[-135,58],[-150,60],[-165,60]],
@@ -315,20 +316,21 @@ const LAND = [
   [[95,5],[106,-6],[102,-4]], [[109,1],[117,7],[119,1],[116,-4],[110,-3]],
   [[114,-22],[115,-34],[130,-32],[138,-35],[147,-38],[153,-28],[146,-19],[142,-11],[136,-12],[130,-12],[122,-17]],
 ];
-// Numbered pins for the illustrated stories, [number, region, lon, lat].
-const PINS = [[1,'as',114,22.5],[2,'me',47.7,29.3],[3,'gl',30.7,36.9],[4,'me',34.4,31.4],[5,'eu',13.4,52.5],[6,'as',96.1,19.8],
-              [7,'af',39,14.5],[9,'af',30,15],[10,'am',-77,38.9],[11,'am',-122,37.4],[12,'gl',2.3,48.9]];
-// Dots for the listed stories, [region, lon, lat].
-const DOTS = [['me',35.3,31.9],['me',44,15],['me',46.7,24.7],['me',51,35],['as',114.2,22.3],['as',101.7,3.1],['as',90,23],['af',15.3,-4.3],
-              ['af',28.2,-25.7],['af',31.2,30],['eu',-0.1,51.5],['eu',4.3,52.1],['eu',7.7,45],['am',-47.9,-15.8],['am',-79,-2],['am',-74,40.7]];
+// Pins for the drawn stories: [number, region, lon, lat]; Voyager (4) and GTA VI (16) have no place.
+const PINS = [[1,'me',47.7,29.3],[2,'as',114,22.5],[3,'eu',30.7,46.5],[5,'gl',30.7,36.9],[6,'am',-77,38.9],[7,'eu',-0.1,51.5],
+              [8,'as',85.8,19.5],[9,'af',30.2,13.2],[10,'af',39,14.5],[11,'me',34.4,31.4],[12,'as',90.4,23.8],[13,'am',-74,40.7],[14,'as',96.1,19.8]];
+const DOTS = [['me',35.3,31.9],['me',44,15],['me',46.7,24.7],['me',51,35],['me',35.5,33.9],['as',101.7,3.1],['as',127,37.5],['as',114.2,22.3],['eu',4.3,52.1],
+              ['as',89.8,23],['as',74.8,34.1],['af',15.3,-4.3],['af',28.2,-25.7],['af',-17.4,14.7],['af',31.2,30],['eu',2.3,48.9],['eu',7.6,47.4],
+              ['oc',151.2,-33.9],['am',-72.3,18.5],['am',-66.9,10.5],['am',-47.9,-15.8],['am',-79,-2],['am',-74.1,4.7],['am',-75.7,45.4]];
 let svg = `<rect width="${W}" height="${H}" fill="#b9d4e6"/>`;
 svg += LAND.map(p => `<polygon points="${p.map(([a, b]) => px(a, b).join(',')).join(' ')}" fill="#ece0bd" stroke="#a8956a" stroke-width=".7"/>`).join('');
-svg += DOTS.map(([r, a, b]) => { const [x, y] = px(a, b); return `<circle cx="${x}" cy="${y}" r="2.6" fill="${REG[r].color}" stroke="#fff" stroke-width=".7"/>`; }).join('');
+svg += DOTS.map(([r, a, b]) => { const [x, y] = px(a, b); return `<circle cx="${x}" cy="${y}" r="2.4" fill="${REG[r].color}" stroke="#fff" stroke-width=".6"/>`; }).join('');
 svg += PINS.map(([n, r, a, b]) => { const [x, y] = px(a, b);
-  return `<circle cx="${x}" cy="${y}" r="6" fill="${REG[r].color}" stroke="#fff"/><text x="${x}" y="${(+y + 3.2).toFixed(1)}" font-family="Bahnschrift, Arial" font-weight="700" font-size="8" fill="#fff" text-anchor="middle">${n}</text>`; }).join('');
+  return `<circle cx="${x}" cy="${y}" r="5.6" fill="${REG[r].color}" stroke="#fff"/><text x="${x}" y="${(+y + 3).toFixed(1)}" font-family="Bahnschrift, Arial" font-weight="700" font-size="7.5" fill="#fff" text-anchor="middle">${n}</text>`; }).join('');
+svg += `<rect x="236" y="120" width="60" height="26" rx="3" fill="#0d1530"/>${T(266, 131, 7, 'DEEP SPACE', '#f3b31b')}${T(266, 141, 7, '4 · Voyager 1', '#fff', 400)}`;
 document.getElementById('map').innerHTML = svg;
-document.getElementById('legend').innerHTML = ['eu', 'me', 'as', 'af', 'am', 'gl'].map(r =>
-  `<span><i style="background:${REG[r].color}"></i>${REG[r].name}</span>`).join('') + '<span>Pins: stories 1–12 · dots: 14–38</span>';
+document.getElementById('legend').innerHTML = order.map(r =>
+  `<span><i style="background:${REG[r].color}"></i>${REG[r].name}</span>`).join('') + '<span>pins: stories 1–16 · dots: 17–50</span>';
 </script>
 </body>
 </html>
